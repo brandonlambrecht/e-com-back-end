@@ -77,7 +77,7 @@ router.put("/:id", async (req, res) => {
 
     return res.status(200).json({
       createCategory,
-      message: "Category created successfully",
+      message: "Category updated successfully",
     });
   } catch (err) {
     console.error(err);
@@ -85,23 +85,27 @@ router.put("/:id", async (req, res) => {
   }
 });
 
-// Delete category by ID
+// Delete category
 router.delete("/:id", async (req, res) => {
   try {
-    const deleteCategory = await Category.findOneAndRemove(req.body, {
-      where: { id: req.params.id },
+    const deleteCategory = await Category.destroy({
+      where: {
+        id: req.params.id,
+      },
     });
 
     if (!deleteCategory) {
-      return res.status(404).json({ message: "Failed to delete category" });
+      res.status(404).json({
+        message: "Category not found with that ID",
+      });
+      return;
     }
 
-    return res.status(200).json({
+    res.status(200).json({
       deleteCategory,
       message: "Category deleted successfully",
     });
   } catch (err) {
-    console.error(err);
     res.status(500).json({ message: "Internal Server Error" });
   }
 });
