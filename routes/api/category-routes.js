@@ -110,4 +110,32 @@ router.delete("/:id", async (req, res) => {
   }
 });
 
+// router.delete("/:id", async (req, res) => {
+//   try {
+//     const categoryId = req.params.id;
+
+//     // Check if the category exists
+//     const categoryToDelete = await Category.findByPk(categoryId);
+
+//     // if (!categoryToDelete) {
+//     //   return res.status(404).json({
+//     //     message: "Category not found with that ID",
+//     //   });
+//     // }
+
+//     // Delete the category
+//     await Category.destroy({
+//       where: {
+//         id: categoryId,
+//       },
+//     });
+
+//     res.status(200).json({
+//       message: "Category deleted successfully",
+//     });
+//   } catch (err) {
+//     console.error(err);
+//     res.status(500).json({ message: "Internal Server Error" });
+//   }
+// });
 module.exports = router;

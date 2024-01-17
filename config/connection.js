@@ -10,7 +10,6 @@ const sequelize = process.env.JAWSDB_URL
       process.env.DB_PASSWORD,
       {
         host: "localhost",
-        // password: "franklin22",
         dialect: "mysql",
         dialectOptions: {
           decimalNumbers: true,
